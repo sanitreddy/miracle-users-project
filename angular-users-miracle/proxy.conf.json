@@ -1,0 +1,6 @@
+{
+    "/node-users-miracle": {
+      "target": "http://node-api:3080",
+      "secure": false
+    }
+  }

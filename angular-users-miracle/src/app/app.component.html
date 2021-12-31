@@ -1,0 +1,165 @@
+
+<style>
+  .content-area {
+    background-color: #1B2A32;
+  }
+
+  .spacer {
+    flex: 1;
+  }
+
+  .toolbar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: #0E161B;
+    color: white;
+    font-weight: 600;
+  }
+
+  .toolbar img {
+    margin: 0 16px;
+  }
+
+  #app-fil {
+    margin-top: 50px;
+    display: block;
+    color: white;
+    text-decoration: underline;
+  }
+
+  #app-sor {
+    color: white;
+    position: absolute;
+    left: 50%;
+  }
+
+  #searchbar {
+    border-radius: 5px;
+    background: white;
+    padding: 2px;
+    position: absolute;
+    margin-top: 5px;
+  }
+
+  #normal-text {
+    color: white;
+    margin-top: 25px;
+    font-size: 15px;
+  }
+</style>
+
+<!-- Toolbar -->
+<div class="toolbar" role="banner">
+  <img width="40" alt="Angular Logo"
+    src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==" />
+
+
+  <span>Omega</span>
+  <div class="spacer"></div>
+  <clr-icon shape="user" size="24">
+  </clr-icon>
+  <span>Sanitreddy Gudipati
+    <clr-icon shape="caret" dir="down">
+      <div class="dropdown-menu">
+        <div class="dropdown-item">Logout</div>
+      </div>
+    </clr-icon>
+  </span>
+</div>
+
+<div class="main-container">
+  <header class="header header-6">
+    <div class="branding">
+      <span class="title">Header</span>
+    </div>
+  </header>
+  <div class="content-container">
+    <div class="content-area">
+      <h3 style="color: white">
+        Find Locations
+      </h3>
+      <cds-form-group layout="vertical">
+        <span id="normal-text">Search by Location address, City, State, Zip 
+          <cds-search id="searchbar">
+            <label></label>
+              <input type="search" />
+          </cds-search>
+        </span>
+      </cds-form-group>
+      <span id="app-fil" style="text-decoration: none;">Filters
+        <span id="app-sor">Sorting</span>
+      </span>
+        <span id="app-fil">Applied Filters
+          <span id="app-sor" style="text-decoration: underline;">Applied Sorts</span>
+        </span>
+        <button type="button" class="btn btn-sm btn-secondary" style="color: #4AAED9;">
+          Clear Filters
+        </button>
+        <button id="app-sor" type="button" class="btn btn-sm btn-secondary" style="color: #4AAED9">
+          Clear Sorts
+        </button>
+      <clr-datagrid>
+        <clr-dg-column>Id</clr-dg-column>
+        <clr-dg-column>Name</clr-dg-column>
+        <clr-dg-column>Username</clr-dg-column>
+        <clr-dg-column>Email</clr-dg-column>
+        <clr-dg-column>Address</clr-dg-column>
+        <clr-dg-column>Coordinates</clr-dg-column>
+        <clr-dg-column>Website</clr-dg-column>
+        <clr-dg-column>Phone</clr-dg-column>
+        <clr-dg-column>Company Name</clr-dg-column>
+        <clr-dg-column>Company catchPhrase</clr-dg-column>
+        <clr-dg-column>Company bs</clr-dg-column>
+
+        <clr-dg-row *ngFor="let item of result.slice(0,newValue)">
+          <clr-dg-cell>{{item.id}}</clr-dg-cell>
+          <clr-dg-cell>{{item.name}}</clr-dg-cell>
+          <clr-dg-cell>{{item.username}}</clr-dg-cell>
+          <clr-dg-cell>{{item.email}}</clr-dg-cell>
+          <clr-dg-cell>{{item.address.street}}, {{item.address.suite}}, {{item.address.city}}, {{item.address.zipcode}}</clr-dg-cell>
+          <clr-dg-cell>{{item.address.geo.lat}}, {{item.address.geo.lng}}</clr-dg-cell>
+          <clr-dg-cell>{{item.website}}</clr-dg-cell>
+          <clr-dg-cell>{{item.phone}}</clr-dg-cell>
+          <clr-dg-cell>{{item.company.name}}</clr-dg-cell>
+          <clr-dg-cell>{{item.company.catchPhrase}}</clr-dg-cell>
+          <clr-dg-cell>{{item.company.bs}}</clr-dg-cell>
+        </clr-dg-row>
+
+        <clr-dg-footer>{{result.length}} users</clr-dg-footer>
+        <clr-dg-footer>
+          <clr-dg-pagination #pagination [clrDgPageSize]="3">
+            <clr-dg-page-size [clrPageSizeOptions]="[3,5,10]" (change)="OnSave($event)">Users per page</clr-dg-page-size>
+            {{pagination.firstItem + 1}} - {{pagination.lastItem + 1}}
+          </clr-dg-pagination>
+        </clr-dg-footer>
+      </clr-datagrid>
+
+    </div>
+    
+    <!-- <nav class="sidenav">
+      <section class="sidenav-content">
+        <a href="javascript://" class="nav-link">
+          FAQ
+        </a>
+        <a href="javascript://" class="nav-link">
+          Careers
+        </a>
+        <section class="nav-group collapsible">
+          <input id="tabexample1" type="checkbox" />
+          <label for="tabexample1">More</label>
+          <ul class="nav-list">
+            <li><a class="nav-link">About</a></li>
+            <li><a class="nav-link">Contat Us</a></li>
+          </ul>
+        </section>
+      </section>
+    </nav> -->
+  </div>
+</div>
+
+<router-outlet></router-outlet>
