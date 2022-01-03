@@ -15,7 +15,8 @@ app.use((req, res, next) => {
   });
 
 app.get('/', (req,res) => {
-    res.redirect("https://jsonplaceholder.typicode.com/users");
+  var newurl = 'https://jsonplaceholder.typicode.com/users';
+  request(newurl).pipe(res);
  });
 
  // Joi validation
